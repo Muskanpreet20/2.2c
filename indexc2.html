@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Fashion Designer Hub</title>
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li @click="showFeaturedDesigners">Featured Designers</li>
+                <li @click="showBlog">Blog</li>
+                <li @click="showEvents">Events</li>
+            </ul>
+        </nav>
+
+        <header>
+            <img src="https://fashionmingle.com/wp-content/uploads/2017/11/drawing2.jpg" alt="Fashion Designer Hub" class="header-image">
+            <h1>Welcome to Fashion Designer Hub</h1>
+            <p>Your destination for discovering emerging fashion talent.</p>
+        </header>
+        <main>
+            <!-- Use v-if, v-else-if, and v-else to switch between sections -->
+            <div v-if="selectedSection === 'featuredDesigners'">
+                <h2>Featured Fashion Designers</h2>
+                <featured-designers v-for="designer in featuredDesigners" :key="designer.name" :designer="designer"></featured-designers>
+                <designer-details v-if="selectedDesigner" :selectedDesigner="selectedDesigner" @close="selectedDesigner = null"></designer-details>
+            </div>
+            <div v-else-if="selectedSection === 'blog'">
+                <h2>Blog</h2>
+                <!-- Blog content goes here -->
+            </div>
+            <div v-else-if="selectedSection === 'events'">
+                <h2>Events</h2>
+            </div>
+            <div v-else>
+                <p>Select a section from the menu .</p>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2023 Fashion Designer Hub</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.9/dist/vue.global.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
